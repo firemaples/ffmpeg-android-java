@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -35,6 +36,7 @@ import com.github.hiteshsondhi88.libffmpeg.LoadBinaryResponseHandler;
 import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
 import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegNotSupportedException;
 
+import java.io.File;
 import java.util.Arrays;
 
 public class Home extends Activity implements View.OnClickListener {
@@ -229,7 +231,7 @@ public class Home extends Activity implements View.OnClickListener {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
                     ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
@@ -292,7 +294,7 @@ public class Home extends Activity implements View.OnClickListener {
 //        "-vf", "scale=360:360:force_original_aspect_ratio=decrease",  //https://stackoverflow.com/questions/8133242/ffmpeg-resize-down-larger-video-to-fit-desired-size-and-add-padding
                 "-vf", "scale='if(lte(min(iw\\,ih\\),360),-2,if(lt(iw\\,ih\\), 360, -2))':'if(lte(min(iw\\,ih\\),360),-2,if(lt(ih\\,iw\\), 360, -2))'",
 //        "-x264opts", "crf=18:ref=4:bframes=5",
-                "/storage/emulated/0/test.mp4"
+                new File(Environment.getExternalStorageDirectory(), "test.mp4").getAbsolutePath()
         };
 
         execFFmpegBinary(command);
