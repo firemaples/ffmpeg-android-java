@@ -27,13 +27,14 @@ class CpuArchHelper {
         } else if (getx86_64CpuAbi().equals(abi)) {
             return CpuArch.x86_64;
         } else if (getArmeabiv7CpuAbi().equals(abi)) {
-            ArmArchHelper cpuNativeArchHelper = new ArmArchHelper();
-            String archInfo = cpuNativeArchHelper.cpuArchFromJNI();
-            // check if device is arm v7
-            if (cpuNativeArchHelper.isARM_v7_CPU(archInfo)) {
-                // check if device is neon
-                return CpuArch.ARMv7;
-            }
+            return CpuArch.ARMv7;
+//            ArmArchHelper cpuNativeArchHelper = new ArmArchHelper();
+//            String archInfo = cpuNativeArchHelper.cpuArchFromJNI();
+//            // check if device is arm v7
+//            if (cpuNativeArchHelper.isARM_v7_CPU(archInfo)) {
+//                // check if device is neon
+//                return CpuArch.ARMv7;
+//            }
         } else if (getArm64CpuAbi().equals(abi)) {
             return CpuArch.ARM64;
         }

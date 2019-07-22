@@ -22,7 +22,8 @@ public class Log {
     static void d(Object obj) {
         if (logInterceptor != null) {
             logInterceptor.log("d", TAG, obj != null ? obj.toString() : null + "");
-        } else if (DEBUG) {
+        }
+        if (DEBUG) {
             android.util.Log.d(TAG, obj != null ? obj.toString() : null + "");
         }
     }
@@ -30,7 +31,8 @@ public class Log {
     static void e(Object obj) {
         if (logInterceptor != null) {
             logInterceptor.log("e", TAG, obj != null ? obj.toString() : null + "");
-        } else if (DEBUG) {
+        }
+        if (DEBUG) {
             android.util.Log.e(TAG, obj != null ? obj.toString() : null + "");
         }
     }
@@ -38,7 +40,8 @@ public class Log {
     static void w(Object obj) {
         if (logInterceptor != null) {
             logInterceptor.log("w", TAG, obj != null ? obj.toString() : null + "");
-        } else if (DEBUG) {
+        }
+        if (DEBUG) {
             android.util.Log.w(TAG, obj != null ? obj.toString() : null + "");
         }
     }
@@ -46,7 +49,8 @@ public class Log {
     static void i(Object obj) {
         if (logInterceptor != null) {
             logInterceptor.log("i", TAG, obj != null ? obj.toString() : null + "");
-        } else if (DEBUG) {
+        }
+        if (DEBUG) {
             android.util.Log.i(TAG, obj != null ? obj.toString() : null + "");
         }
     }
@@ -54,7 +58,8 @@ public class Log {
     static void v(Object obj) {
         if (logInterceptor != null) {
             logInterceptor.log("v", TAG, obj != null ? obj.toString() : null + "");
-        } else if (DEBUG) {
+        }
+        if (DEBUG) {
             android.util.Log.v(TAG, obj != null ? obj.toString() : null + "");
         }
     }
@@ -62,7 +67,8 @@ public class Log {
     static void e(Object obj, Throwable throwable) {
         if (logInterceptor != null) {
             logInterceptor.log("e", TAG, obj != null ? obj.toString() : null + "", throwable);
-        } else if (DEBUG) {
+        }
+        if (DEBUG) {
             android.util.Log.e(TAG, obj != null ? obj.toString() : null + "", throwable);
         }
     }
@@ -70,7 +76,8 @@ public class Log {
     static void e(Throwable throwable) {
         if (logInterceptor != null) {
             logInterceptor.log("e", TAG, "", throwable);
-        } else if (DEBUG) {
+        }
+        if (DEBUG) {
             android.util.Log.e(TAG, "", throwable);
         }
     }
