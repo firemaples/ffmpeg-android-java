@@ -41,9 +41,17 @@ public class FFmpeg implements FFmpegInterface {
                 Log.i("Loading FFmpeg for x86 CPU");
                 cpuArchNameFromAssets = "x86";
                 break;
+            case x86_64:
+                Log.i("Loading FFmpeg for x86_64 CPU");
+                cpuArchNameFromAssets = "x86_64";
+                break;
             case ARMv7:
-                Log.i("Loading FFmpeg for armv7 CPU");
+                Log.i("Loading FFmpeg for ARMv7 CPU");
                 cpuArchNameFromAssets = "armeabi-v7a";
+                break;
+            case ARM64:
+                Log.i("Loading FFmpeg for arm64 CPU");
+                cpuArchNameFromAssets = "arm64-v8a";
                 break;
             case NONE:
                 throw new FFmpegNotSupportedException("Device not supported");
@@ -63,16 +71,16 @@ public class FFmpeg implements FFmpegInterface {
             throw new FFmpegCommandAlreadyRunningException("FFmpeg command is already running, you are only allowed to run single command at a time");
         }
         if (cmd.length != 0) {
-            String[] ffmpegBinary = new String[] { FileUtils.getFFmpeg(context, environvenmentVars) };
+            String[] ffmpegBinary = new String[]{FileUtils.getFFmpeg(context, environvenmentVars)};
             String[] command = concatenate(ffmpegBinary, cmd);
-            ffmpegExecuteAsyncTask = new FFmpegExecuteAsyncTask(command , timeout, ffmpegExecuteResponseHandler);
+            ffmpegExecuteAsyncTask = new FFmpegExecuteAsyncTask(command, timeout, ffmpegExecuteResponseHandler);
             ffmpegExecuteAsyncTask.execute();
         } else {
             throw new IllegalArgumentException("shell command cannot be empty");
         }
     }
 
-    public <T> T[] concatenate (T[] a, T[] b) {
+    public <T> T[] concatenate(T[] a, T[] b) {
         int aLen = a.length;
         int bLen = b.length;
 
@@ -92,7 +100,7 @@ public class FFmpeg implements FFmpegInterface {
     @Override
     public String getDeviceFFmpegVersion() throws FFmpegCommandAlreadyRunningException {
         ShellCommand shellCommand = new ShellCommand();
-        CommandResult commandResult = shellCommand.runWaitFor(new String[] { FileUtils.getFFmpeg(context), "-version" });
+        CommandResult commandResult = shellCommand.runWaitFor(new String[]{FileUtils.getFFmpeg(context), "-version"});
         if (commandResult.success) {
             return commandResult.output.split(" ")[2];
         }
